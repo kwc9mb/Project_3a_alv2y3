@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Data Analyzer</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        .container { width: 80%; margin: 0 auto; overflow: hidden; }
+        h1 { text-align: center; color: #333; }
+        form { background: #fff; padding: 20px; border-radius: 8px; }
+        label { display: block; margin-bottom: 5px; }
+        select, input[type="date"], input[type="submit"] {
+            width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px;
+        }
+        input[type="submit"] { background-color: #5cb85c; color: white; cursor: pointer; }
+        input[type="submit"]:hover { background-color: #4cae4c; }
+        .flash-message { color: red; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Data Analyzer</h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-message">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <label for="symbol">Stock Symbol:</label>
+            <select name="symbol" id="symbol">
+                {% for symbol in form.symbol.choices %}
+                <option value="{{ symbol[0] }}">{{ symbol[1] }}</option>
+                {% endfor %}
+            </select>
+            <label for="time_series">Time Series:</label>
+            <select name="time_series" id="time_series">
+                {% for key, value in form.time_series.choices %}
+                <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date">
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date">
+            <label for="chart_type">Chart Type:</label>
+            <select name="chart_type" id="chart_type">
+                {% for key, value in form.chart_type.choices %}
+                <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>

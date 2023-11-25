@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        .container { width: 80%; margin: 0 auto; overflow: hidden; }
+        h1 { text-align: center; color: #333; }
+        img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        a { display: inline-block; margin-top: 20px; background-color: #5cb85c; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; }
+        a:hover { background-color: #4cae4c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Data Visualizer</h1>
+        <p>Here is the chart for the selected stock data:</p>
+        <img src="{{ url_for('static', filename=chart) }}" alt="Chart">
+        <p><a href="{{ url_for('home') }}">Back to Home</a></p>
+    </div>
+</body>
+</html>
